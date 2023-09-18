@@ -71,8 +71,8 @@
       function choose() {
         let chosen = displayedOptions[displayedOptions.length - 1];
         document.body.style.backgroundImage = "url('decided.jpg')";
-        document.querySelector(".result").textContent =
-          "Congratulations!!! You're going to " + chosen;
+        document.querySelector(".result").innerHTML =
+          "Congratulations!!! <br> Enjoy the heck out of the " + chosen;
         document.querySelector(".option").textContent = "";
         document.getElementById("question").style.display = "none";
         document.getElementById("nextBtn").style.display = "none"; // Hide the "No, next..." button
