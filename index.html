@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todd and Ashley Dinner App</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        font-size: 33px;
+        background-image: url("pondering.jpg");
+        background-size: 1000px;
+        background-repeat: no-repeat;
+        background-position: center;
+        text-align: center;
+        color: rgb(230, 238, 22);
+        text-shadow: 2px 2px 4px black;
+        padding-top: 10%;
+      }
+
+      .option,
+      .result {
+        font-size: 42px;
+        font-weight: bold;
+        color: rgb(33, 152, 211);
+        text-shadow: 2px 2px 4px black;
+      }
+
+      .result {
+        padding-top: 15%;
+        background-position: top;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h2 id="question">Where should Todd and Ashley eat?</h2>
+    <div class="option"></div>
+    <button id="nextBtn" onclick="nextOption()">No, next...</button>
+    <button id="chooseBtn" onclick="choose()">Yes!</button>
+    <div class="result"></div>
+    <script>
+      let options = [
+        "Roman Cocina",
+        "Olive Garden",
+        "Chinese food",
+        "pizza from the store",
+        "in-n-out",
+        "hiccups",
+        "Mulberry Street",
+        "Cane's",
+        "Tacos at home",
+        "Matador",
+        "Cauldron",
+      ];
+      let displayedOptions = [];
+
+      function getRandomOption() {
+        if (options.length === 0) return "Sorry, no more options left!";
+        let index = Math.floor(Math.random() * options.length);
+        let option = options[index];
+        displayedOptions.push(option);
+        options.splice(index, 1);
+        return option;
+      }
+
+      function nextOption() {
+        document.querySelector(".option").textContent = getRandomOption();
+      }
+
+      function choose() {
+        let chosen = displayedOptions[displayedOptions.length - 1];
+        document.body.style.backgroundImage = "url('decided.jpg')";
+        document.querySelector(".result").textContent =
+          "Congratulations!!! You're going to " + chosen;
+        document.querySelector(".option").textContent = "";
+        document.getElementById("question").style.display = "none";
+        document.getElementById("nextBtn").style.display = "none"; // Hide the "No, next..." button
+        document.getElementById("chooseBtn").style.display = "none"; // Hide the "Yes!" button
+      }
+
+      // Initial option display
+      nextOption();
+    </script>
+  </body>
+</html>
